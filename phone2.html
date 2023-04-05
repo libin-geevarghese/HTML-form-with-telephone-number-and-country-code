@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form with country code</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.min.js"></script>
+  </head>
+  <body>
+    <section class="pt-5 pb-5">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-md-12">
+            <h4>
+              <a href="https://intl-tel-input.com/" target="_blank"
+                >Country Code Selection</a
+              >
+            </h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6 mt-5 mb-5">
+            <div class="form-area">
+              <div class="form-inner">
+                <form>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="First Name"
+                      value=""
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Last Name"
+                      value=""
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="tel"
+                      id="phone"
+                      class="form-control intl-tel-input"
+                      placeholder="Phone Number"
+                      name="name"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Email"
+                      name="name"
+                    />
+                  </div>
+
+                  <button
+                    type="button"
+                    class="btn btn-primary form-submit"
+                    onclick="showPhoneNumber()"
+                  >
+                    Submit
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
+
+<style>
+  @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap");
+  body {
+    height: 100%;
+    margin: 0;
+  }
+
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  button:focus,
+  input:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  a,
+  a:hover {
+    text-decoration: none;
+  }
+
+  body {
+    font-family: "Roboto", sans-serif;
+    background-color: #e0e3e8;
+  }
+
+  /*------------*/
+  .form-area {
+    background-color: #fff;
+    box-shadow: 0px 5px 10px rgba(90, 116, 148, 0.3);
+    padding: 40px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .form-area .form-inner {
+    width: 100%;
+  }
+  .form-control {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 15px 19px;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #475f7b;
+    background-color: #fff;
+    border: 1px solid #dfe3e7;
+    border-radius: 0.267rem;
+    -webkit-transition: border-color 0.15s ease-in-out,
+      box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  .form-control:focus {
+    color: #475f7b;
+    background-color: #fff;
+    border-color: #5a8dee;
+    outline: 0;
+    box-shadow: 0 3px 8px 0 rgb(0 0 0 / 10%);
+  }
+  .intl-tel-input,
+  .iti {
+    width: 100%;
+  }
+</style>
+
+<script>
+  // Initialize the intl-tel-input library
+  const input = document.querySelector(".intl-tel-input");
+  const iti = window.intlTelInput(input, {
+    preferredCountries: ["us", "gb", "in"], // Set the preferred countries
+    utilsScript:
+      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/utils.js", // Load the utils.js file
+  });
+
+  function showPhoneNumber() {
+    var countryCode = iti.getSelectedCountryData().dialCode;
+    var phoneNumber = document.getElementById("phone").value;
+    alert("Country Code: " + countryCode + "\nPhone Number: " + phoneNumber);
+  }
+</script>
